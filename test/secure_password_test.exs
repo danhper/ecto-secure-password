@@ -8,6 +8,9 @@ defmodule SecurePasswordTest do
     changeset = User.changeset %User{}, %{}
     refute changeset.valid?
 
+    changeset = User.changeset %User{}, %{}, required: false
+    assert changeset.valid?
+
     changeset = User.changeset %User{}, %{"password" => "a"}
     refute changeset.valid?
 

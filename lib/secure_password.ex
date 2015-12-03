@@ -6,7 +6,8 @@ defmodule SecurePassword do
   require Ecto.Schema
 
   @default_secure_password_opts [
-    min_length: 6
+    min_length: 6,
+    required: true
   ]
 
   import Ecto.Changeset
@@ -42,6 +43,11 @@ defmodule SecurePassword do
   @doc """
   Validates and modify the changeset to remove the `password` and `password_confirmation` fields
   and add the hashed `password_digest` field.
+
+  You can pass:
+
+    * `required`: Do not force the password to be present if set to `false`. (default: `true`)
+    * `min_length`: Set the minimum length for the password. (default: `6`)
   """
   def with_secure_password(changeset, opts \\ []) do
     opts = Dict.merge(@default_secure_password_opts, opts)
@@ -51,7 +57,7 @@ defmodule SecurePassword do
       if changeset.valid?, do: set_secure_password(changeset),
       else: changeset
     else
-      if changeset.model.id, do: changeset,
+      if !opts[:required] || changeset.model.id, do: changeset,
       else: %{changeset | errors: [{:password, "can't be blank"}|changeset.errors], valid?: false}
     end
   end

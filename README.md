@@ -31,7 +31,7 @@ To use `secure_password`, you need to
 
 1. Add `use SecurePassword` to your model
 2. Add `has_secure_password` to your schema
-3. Add `with_secure_password` to your changeset
+3. Add `with_secure_password` to your changeset (see the docs for the available options)
 
 Here is an example user module.
 
