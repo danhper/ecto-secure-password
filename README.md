@@ -1,6 +1,9 @@
-# ecto-secure-password
+# ecto-secure-password [![Build Status](https://travis-ci.org/tuvistavie/ecto-secure-password.svg)](https://travis-ci.org/tuvistavie/ecto-secure-password) [![Hex Version](http://img.shields.io/hexpm/v/secure_password.svg?style=flat)](https://hex.pm/packages/secure_password) [![Hex docs](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/secure_password/SecurePassword.html)
+
 
 A port of Rails [has_secure_password](http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html) for [Ecto](https://github.com/elixir-lang/ecto) models.
+
+The full documentation is available at http://hexdocs.pm/secure_password/SecurePassword.html
 
 ## Installation
 
@@ -26,7 +29,7 @@ end
 
 To use `secure_password`, you need to
 
-1. Call `use SecurePassword` in your model
+1. Add `use SecurePassword` to your model
 2. Add `has_secure_password` to your schema
 3. Add `with_secure_password` to your changeset
 

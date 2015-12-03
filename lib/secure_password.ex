@@ -1,6 +1,6 @@
 defmodule SecurePassword do
   @moduledoc """
-  Provides an easy way to interact with hashed password for an Ecto model
+  Provides an easy way to interact with hashed password for Ecto models
   """
 
   require Ecto.Schema
