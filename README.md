@@ -72,3 +72,13 @@ else
   # you are not authenticated
 end
 ```
+
+## Testing
+
+This library uses [https://github.com/elixircnx/comeonin](comeonin) to hash passwords.
+To avoid slowing down the tests, you can add the following to your `config/test.exs`.
+
+```elixir
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1
+```
