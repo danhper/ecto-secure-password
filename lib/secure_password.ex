@@ -1,6 +1,32 @@
 defmodule SecurePassword do
-  @moduledoc """
-  Provides an easy way to interact with hashed password for Ecto models
+  @moduledoc ~S"""
+  Provides an easy way to interact with hashed password for Ecto models.
+
+  ## Example
+
+      defmodule User do
+        use Ecto.Schema
+        use SecurePassword
+
+        import Ecto.Changeset
+
+        schema "users" do
+          field :email, :string
+          field :name, :string
+
+          has_secure_password
+        end
+
+        @required_fields ~w(email)
+        @optional_fields ~w(name)
+
+        def changeset(model, params \\ :empty) do
+          model
+          |> cast(params, @required_fields, @optional_fields)
+          |> with_secure_password(min_length: 8)
+        end
+      end
+
   """
 
   require Ecto.Schema
@@ -31,6 +57,7 @@ defmodule SecurePassword do
 
           has_secure_password
       end
+
   """
   defmacro has_secure_password do
     quote do
@@ -44,10 +71,11 @@ defmodule SecurePassword do
   Validates and modify the changeset to remove the `password` and `password_confirmation` fields
   and add the hashed `password_digest` field.
 
-  You can pass:
+  ## Options
 
     * `required`: Do not force the password to be present if set to `false`. (default: `true`)
     * `min_length`: Set the minimum length for the password. (default: `6`)
+
   """
   def with_secure_password(changeset, opts \\ []) do
     opts = Dict.merge(@default_secure_password_opts, opts)

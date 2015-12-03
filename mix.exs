@@ -3,7 +3,7 @@ defmodule SecurePassword.Mixfile do
 
   def project do
     [app: :secure_password,
-     version: "0.2.0",
+     version: "0.2.1",
      elixir: "~> 1.1",
      package: package,
      description: description,
@@ -27,7 +27,7 @@ defmodule SecurePassword.Mixfile do
       {:ecto, "~> 1.0"},
       {:comeonin, "~> 1.6"},
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.7", only: :dev}
+      {:ex_doc, "~> 0.11", only: :dev}
     ]
   end
 
