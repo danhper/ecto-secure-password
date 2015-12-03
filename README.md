@@ -75,7 +75,7 @@ end
 
 ## Testing
 
-This library uses [https://github.com/elixircnx/comeonin](comeonin) to hash passwords.
+This library uses [comeonin](https://github.com/elixircnx/comeonin) to hash passwords.
 To avoid slowing down the tests, you can add the following to your `config/test.exs`.
 
 ```elixir
