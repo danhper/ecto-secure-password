@@ -1,9 +1,9 @@
-# ecto-secure-password [![Build Status](https://travis-ci.org/tuvistavie/ecto-secure-password.svg)](https://travis-ci.org/tuvistavie/ecto-secure-password) [![Hex Version](http://img.shields.io/hexpm/v/secure_password.svg?style=flat)](https://hex.pm/packages/secure_password) [![Hex docs](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/secure_password/0.2.1/SecurePassword.html)
+# ecto-secure-password [![Build Status](https://travis-ci.org/tuvistavie/ecto-secure-password.svg)](https://travis-ci.org/tuvistavie/ecto-secure-password) [![Hex Version](http://img.shields.io/hexpm/v/secure_password.svg?style=flat)](https://hex.pm/packages/secure_password) [![Hex docs](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/secure_password/0.2.2/SecurePassword.html)
 
 
 A port of Rails [has_secure_password](http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html) for [Ecto](https://github.com/elixir-lang/ecto) models.
 
-The full documentation is available at http://hexdocs.pm/secure_password/0.2.1/SecurePassword.html
+The full documentation is available at http://hexdocs.pm/secure_password/0.2.2/SecurePassword.html
 
 ## Installation
 
@@ -11,7 +11,7 @@ The full documentation is available at http://hexdocs.pm/secure_password/0.2.1/S
 
 ```elixir
 def deps do
-  [{:secure_password, "~> 0.1.0"}]
+  [{:secure_password, "~> 0.2.2"}]
 end
 ```
 

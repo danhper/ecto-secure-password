@@ -99,6 +99,7 @@ defmodule SecurePassword do
     Comeonin.Bcrypt.checkpw(password, model.password_digest) && model
   end
 
+  defp has_password(%Ecto.Changeset{params: nil}), do: false
   defp has_password(changeset) do
     password = Dict.get(changeset.params, "password")
     is_binary(password) && String.length(password) > 0
