@@ -10,7 +10,7 @@ defmodule User do
 
   def changeset(model, params \\ :empty, secure_password_opts \\ []) do
     model
-      |> cast(params, [], [])
+      |> cast(params, [], ~w(password))
       |> with_secure_password(secure_password_opts)
   end
 end

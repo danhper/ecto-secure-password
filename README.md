@@ -33,6 +33,10 @@ To use `secure_password`, you need to
 2. Add `has_secure_password` to your schema
 3. Add `with_secure_password` to your changeset (see the docs for the available options)
 
+
+NOTE: Be sure to have `password` either in your changeset `required_fields` or `optional_fields`.
+   You do not need to add `password_confirmation` in either as it will be checked from `changeset.params`.
+
 Here is an example user module.
 
 ```elixir
@@ -50,7 +54,7 @@ defmodule User do
   end
 
   @required_fields ~w(email)
-  @optional_fields ~w(name)
+  @optional_fields ~w(name password)
 
   def changeset(model, params \\ :empty) do
     model

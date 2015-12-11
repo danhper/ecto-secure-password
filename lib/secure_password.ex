@@ -18,7 +18,7 @@ defmodule SecurePassword do
         end
 
         @required_fields ~w(email)
-        @optional_fields ~w(name)
+        @optional_fields ~w(name password)
 
         def changeset(model, params \\ :empty) do
           model
@@ -78,10 +78,9 @@ defmodule SecurePassword do
 
   """
   def with_secure_password(changeset, opts \\ []) do
-    opts = Dict.merge(@default_secure_password_opts, opts)
+    opts = Keyword.merge(@default_secure_password_opts, opts)
     if has_password(changeset) do
-      password = Dict.get(changeset.params, "password")
-      changeset = changeset |> put_change(:password, password) |> validate_password(opts)
+      changeset = validate_password(changeset, opts)
       if changeset.valid?, do: set_secure_password(changeset),
       else: changeset
     else
@@ -101,7 +100,7 @@ defmodule SecurePassword do
 
   defp has_password(%Ecto.Changeset{params: nil}), do: false
   defp has_password(changeset) do
-    password = Dict.get(changeset.params, "password")
+    password = get_change(changeset, :password)
     is_binary(password) && String.length(password) > 0
   end
 
@@ -113,7 +112,7 @@ defmodule SecurePassword do
   end
 
   defp set_secure_password(changeset) do
-    hashed = Comeonin.Bcrypt.hashpwsalt(Dict.get(changeset.params, "password"))
+    hashed = Comeonin.Bcrypt.hashpwsalt(get_change(changeset, :password))
     changeset
       |> put_change(:password_digest, hashed)
       |> delete_change(:password)
