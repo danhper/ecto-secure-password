@@ -11,7 +11,7 @@ The full documentation is available at http://hexdocs.pm/secure_password/SecureP
 
 ```elixir
 def deps do
-  [{:secure_password, "~> 0.2.2"}]
+  [{:secure_password, "~> 0.3.0"}]
 end
 ```
 
