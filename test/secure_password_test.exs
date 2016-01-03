@@ -45,5 +45,6 @@ defmodule SecurePasswordTest do
     refute User.authenticate(user, "foobaz")
     refute User.authenticate(user, nil)
     refute User.authenticate(nil, "whatever")
+    refute User.authenticate(%User{}, "whatever")
   end
 end
