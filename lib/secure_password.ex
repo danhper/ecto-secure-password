@@ -20,7 +20,7 @@ defmodule SecurePassword do
         @required_fields ~w(email)
         @optional_fields ~w(name password)
 
-        def changeset(model, params \\ :empty) do
+        def changeset(model, params \\ :invalid) do
           model
           |> cast(params, @required_fields, @optional_fields)
           |> with_secure_password(min_length: 8)
@@ -84,7 +84,7 @@ defmodule SecurePassword do
       if changeset.valid?, do: set_secure_password(changeset),
       else: changeset
     else
-      if !opts[:required] || changeset.model.id, do: changeset,
+      if !opts[:required] || changeset_data(changeset).id, do: changeset,
       else: %{changeset | errors: [{:password, "can't be blank"}|changeset.errors], valid?: false}
     end
   end
@@ -118,5 +118,13 @@ defmodule SecurePassword do
       |> put_change(:password_digest, hashed)
       |> delete_change(:password)
       |> delete_change(:password_confirmation)
+  end
+
+  defp changeset_data(changeset) do
+    if Map.has_key?(changeset, :data) do
+      changeset.data
+    else
+      changeset.model
+    end
   end
 end
