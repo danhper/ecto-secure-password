@@ -34,6 +34,12 @@ defmodule SecurePasswordTest do
     changeset = User.changeset %User{id: 1}, %{}
     assert changeset.valid?
 
+    changeset = UserWithCustomPK.changeset %UserWithCustomPK{_id: 1}, %{}
+    refute changeset.valid?
+
+    changeset = UserWithCustomPK.changeset %UserWithCustomPK{__meta__: %{state: :loaded}}, %{}
+    assert changeset.valid?
+
     changeset = User.changeset %User{id: 1}, %{"password" => "abcdef"}
     assert changeset.valid?
   end

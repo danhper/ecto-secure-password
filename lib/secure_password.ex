@@ -84,8 +84,8 @@ defmodule SecurePassword do
       if changeset.valid?, do: set_secure_password(changeset),
       else: changeset
     else
-      if !opts[:required] || changeset_data(changeset).id, do: changeset,
-      else: %{changeset | errors: [{:password, "can't be blank"}|changeset.errors], valid?: false}
+      if !opts[:required] || changeset_data_loaded?(changeset), do: changeset,
+      else: add_error(changeset, :password, "can't be blank")
     end
   end
 
@@ -121,10 +121,23 @@ defmodule SecurePassword do
   end
 
   defp changeset_data(changeset) do
-    if Map.has_key?(changeset, :data) do
-      changeset.data
-    else
-      changeset.model
+    case changeset do
+      # Ecto v2
+      %{data: data} -> data
+      # Ecto v1
+      %{model: data} -> data
+    end
+  end
+
+  defp changeset_data_loaded?(changeset) do
+    case changeset_data(changeset) do
+      # Backward compatibility
+      %{id: id} -> id
+
+      %{__meta__: %{state: :loaded}} ->
+        true
+      _ ->
+        false
     end
   end
 end
