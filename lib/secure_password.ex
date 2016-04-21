@@ -81,7 +81,7 @@ defmodule SecurePassword do
     opts = Keyword.merge(@default_secure_password_opts, opts)
     if has_password(changeset) do
       changeset = validate_password(changeset, opts)
-      if changeset.valid?, do: set_secure_password(changeset),
+      if changeset.valid?, do: set_password_digest(changeset),
       else: changeset
     else
       if !opts[:required] || changeset_data_loaded?(changeset), do: changeset,
@@ -112,7 +112,7 @@ defmodule SecurePassword do
     validate_confirmation(changeset, :password)
   end
 
-  defp set_secure_password(changeset) do
+  defp set_password_digest(changeset) do
     hashed = Comeonin.Bcrypt.hashpwsalt(get_change(changeset, :password))
     changeset
       |> put_change(:password_digest, hashed)
