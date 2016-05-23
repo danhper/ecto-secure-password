@@ -1,4 +1,4 @@
-# ecto-secure-password [![Build Status](https://travis-ci.org/tuvistavie/ecto-secure-password.svg)](https://travis-ci.org/tuvistavie/ecto-secure-password) [![Hex Version](http://img.shields.io/hexpm/v/secure_password.svg?style=flat)](https://hex.pm/packages/secure_password) [![Hex docs](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/secure_password/SecurePassword.html)
+# ecto-secure-password [![Build Status](https://travis-ci.org/tuvistavie/ecto-secure-password.svg)](https://travis-ci.org/tuvistavie/ecto-secure-password) [![Hex Version](http://img.shields.io/hexpm/v/secure_password.svg?style=flat)](https://hex.pm/packages/secure_password) [![Hex docs](http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat)](https://hexdocs.pm/secure_password/SecurePassword.html) [![Deps Status](https://beta.hexfaktor.org/badge/prod/github/tuvistavie/ecto-secure-password.svg)](https://beta.hexfaktor.org/github/tuvistavie/ecto-secure-password)
 
 
 A port of Rails [has_secure_password](http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html) for [Ecto](https://github.com/elixir-lang/ecto) models.
