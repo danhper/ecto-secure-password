@@ -106,10 +106,9 @@ defmodule SecurePassword do
   end
 
   defp validate_password(changeset, opts) do
-    if min_length = opts[:min_length] do
-      changeset = validate_length(changeset, :password, min: min_length)
-    end
-    validate_confirmation(changeset, :password)
+    changeset
+    |> check_min_length(opts[:min_length])
+    |> validate_confirmation(:password)
   end
 
   defp set_password_digest(changeset) do
@@ -128,6 +127,11 @@ defmodule SecurePassword do
       %{model: data} -> data
     end
   end
+
+  defp check_min_length(changeset, min_length) when is_integer(min_length) do
+    validate_length(changeset, :password, min: min_length)
+  end
+  defp check_min_length(changeset, _min_length), do: changeset
 
   defp changeset_data_loaded?(changeset) do
     case changeset_data(changeset) do
