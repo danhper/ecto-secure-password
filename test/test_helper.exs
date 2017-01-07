@@ -7,7 +7,7 @@ defmodule User do
   import Ecto.Changeset
 
   schema "users" do
-    has_secure_password
+    has_secure_password()
   end
 
   def changeset(model, params \\ @param, secure_password_opts \\ []) do
@@ -28,7 +28,7 @@ defmodule UserWithCustomPK do
   @primary_key {:_id, :id, autogenerate: true}
 
   schema "users_with_custom_pk" do
-    has_secure_password
+    has_secure_password()
   end
 
   def changeset(model, params \\ @param, secure_password_opts \\ []) do
