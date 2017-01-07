@@ -23,7 +23,6 @@ defmodule SecurePasswordTest do
     changeset = User.changeset %User{}, %{"password" => "foobar"}
     assert changeset.valid?
     assert get_change(changeset, :password_digest)
-    refute get_change(changeset, :password)
 
     changeset = User.changeset %User{}, %{"password" => "a"}, min_length: 1
     assert changeset.valid?
