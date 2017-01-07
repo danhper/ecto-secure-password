@@ -1,17 +1,19 @@
 defmodule SecurePassword.Mixfile do
   use Mix.Project
 
+  @version "0.6.0"
+
   def project do
     [app: :secure_password,
-     version: "0.5.0",
+     version: @version,
      elixir: "~> 1.1",
-     package: package,
-     description: description,
+     package: package(),
+     description: description(),
      source_url: "http://github.com/tuvistavie/ecto-secure-password",
      homepage_url: "http://github.com/tuvistavie/ecto-secure-password",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps()]
   end
 
   def application do
