@@ -115,8 +115,6 @@ defmodule SecurePassword do
     hashed = Comeonin.Bcrypt.hashpwsalt(get_change(changeset, :password))
     changeset
       |> put_change(:password_digest, hashed)
-      |> delete_change(:password)
-      |> delete_change(:password_confirmation)
   end
 
   defp changeset_data(changeset) do
